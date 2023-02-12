@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>本の一覧表示</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<div th:replace="header::header"></div>
+    <div class="container">
+		<div class="row">
+			<div th:each="book : ${bookList}" th:object="${book}" class="card col-4 me-3" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title" th:text="*{title}"></h5>
+					<p class="card-text" th:text="*{price} + 円"></p>
+			  </div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
