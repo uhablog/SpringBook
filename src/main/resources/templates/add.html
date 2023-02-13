@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>本を新規登録する</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<div th:replace="share::header"></div>
+	<div class="container">
+		<h1>本を新規で登録する</h1>
+		<form th:action="@{/book-create}" th:object="${bookForm}" method="POST">
+			<div class="mb-3">
+				<label for="bookTitle" class="form-label">タイトル</label>
+				<input id="bookTitle" class="form-control" type="text" th:field="*{title}">
+			</div>
+			<div class="mb-3">
+				<label for="bookPrice" class="form-label">値段</label>
+				<input id="bookPrice" class="form-control" type="number" th:field="*{price}">
+			</div>
+			<input type="submit" class="btn btn-primary" value="新規登録">
+		</form>
+    </div>
+</body>
+</html>
