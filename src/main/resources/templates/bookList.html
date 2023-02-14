@@ -14,6 +14,7 @@
 					<h5 class="card-title" th:text="*{title}"></h5>
 					<p class="card-text" th:text="*{price} + 円"></p>
 					<a class="btn btn-success" th:href="@{/book-edit(id=*{id})}">編集</a>
+					<a class="btn btn-danger" th:href="@{/book-delete(id=*{id})}">削除</a>
 			  </div>
 			</div>
 		</div>

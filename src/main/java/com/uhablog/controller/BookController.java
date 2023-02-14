@@ -92,16 +92,32 @@ public class BookController {
      */
     @PostMapping("/book-edit")
     public String update(@ModelAttribute @Validated EditBookForm editBook, BindingResult result, Model model) {
-    		
+
         // バリデーションエラーの場合
         if (result.hasErrors()) {
             // 編集画面に遷移
             return "edit";
         }
-    	
+
         // 本を更新する
         service.update(editBook);
-    	
+
+        // 本の一覧画面にリダイレクト
+        return "redirect:/book-list";
+    }
+    
+    /**
+     * 本の削除を行う
+     * @param model
+     * @param Book
+     * @return
+     */
+    @GetMapping("/book-delete")
+    public String deleteBook(Model model, Book Book) {
+
+        // データベースのデータを削除する
+        service.delete(Book.getId());
+
         // 本の一覧画面にリダイレクト
         return "redirect:/book-list";
     }

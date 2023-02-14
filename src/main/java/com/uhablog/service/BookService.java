@@ -76,4 +76,14 @@ public class BookService {
         // データベースを更新する
         repository.save(book);
     }
+    
+    /**
+     * 本を削除する
+     * @param id
+     */
+    public void delete(Integer id) {
+
+        // idを指定して、データベースからデータを削除する
+        repository.deleteById(id);
+    }
 }
