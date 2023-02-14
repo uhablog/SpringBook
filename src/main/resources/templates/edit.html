@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>本の情報を編集</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<div th:replace="share::header"></div>
+    <div class="container">
+    	<h1>本の編集を行う</h1>
+    	<form th:action="@{/book-edit}" th:object="${editBookForm}" method="POST">
+    		<input type="hidden" th:field="*{id}" th:value="*{id}" />
+			<div class="mb-3">
+				<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">Title Error</p>
+				<label for="bookTitle" class="form-label">タイトル</label>
+				<input id="bookTitle" class="form-control" type="text" th:field="*{title}">
+			</div>
+			<div class="mb-3">
+				<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Price Error</p>
+				<label for="bookPrice" class="form-label">値段</label>
+				<input id="bookPrice" class="form-control" type="number" th:field="*{price}">
+			</div>
+			<input type="submit" class="btn btn-primary" value="更新">
+    	</form>
+    	<a th:href="@{/book-list}" class="btn btn-secondary">一覧に戻る</a>
+    </div>
+</body>
+</html>
