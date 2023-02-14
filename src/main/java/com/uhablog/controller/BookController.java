@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +52,13 @@ public class BookController {
      * @return
      */
     @PostMapping("/book-create")
-    public String saveBook(@ModelAttribute BookForm bookForm, Model model) {
+    public String saveBook(@ModelAttribute @Validated BookForm bookForm, BindingResult result,Model model) {
+    	
+    	// バリデーションエラーの場合
+    	if (result.hasErrors()) {
+    		// 新規登録画面に遷移
+    		return "add";
+    	}
 
         // 本を登録する
         service.insert(bookForm);
